@@ -1,91 +1,47 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+## Dataset
+<b>Dataset Chosen:</b> [Movies dataset details | Kaggle](https://www.kaggle.com/datasets/sachinkumar62/movies-details) <br>
+<b>Description from Kaggle Page:</b> "This dataset contains information on 8,551 movies, including titles, release dates, popularity scores, and user ratings. It features vote counts and average ratings, making it useful for analyzing top-rated films and audience preferences. The dataset also includes movie overviews, providing a brief summary of each film. Ideal for recommendation systems, trend analysis, and sentiment studies in the film industry."
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+Download this dataset and place the CSV file ("movies.csv") in the same folder as the Jupyter Notebook file.
 
----
+## Setup
 
-## Overview
+My solution runs on Python 3.11.5, so you will need that version to run it. It may work on other versions, but using this one minimizes the chances that you'll have problems.
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+Download the Jupyter Notebook file, run the Jupyter Notebook program (install it if you do not have it yet), open the file in the web interface that shows up, then click Cell -> Run All to execute. 
 
-### Example Use Case
+The function to find recommendations takes two parameters: The user query, and the number of recommendations desired. In the call to the function at the bottom of the notebook, either or both of these can be edited at will for different output.
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+Here are a few potential queries:
 
----
+`provide_recommendations("I like action movies set in space", 5)` <br>
+`provide_recommendations("I love romcoms", 3)` <br>
+`provide_recommendations("I'm a big fan of murder mysteries", 4)` <br>
 
-## Requirements
+## Results
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+<b>Function Call:</b> `provide_recommendations("I like action movies set in space", 5)`
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+<b>System Output:</b>
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+You provided us with the following query: "I like action movies set in space" <br>
+This is how many recommendations you wanted: 5 <br>
+Here are 5 movies we think you'll love. 
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+Movie 1: "Gattaca". Similarity score: 0.2324916639956013. <br>
+Movie description: "In a future society in the era of indefinite eugenics, humans are set on a life course depending on their DNA. Young Vincent Freeman is born with a condition that would prevent him from space travel, yet is determined to infiltrate the GATTACA space program." 
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+Movie 2: "The Cheetah Girls: One World". Similarity score: 0.21330124631580724. <br>
+Movie description: "Chanel, Dorinda, and Aqua, are off to India to star in a Bollywood movie. But when there they discover that they will have to compete against each other to get the role in the movie. Will the Cheetah's break up again?" 
 
----
+Movie 3: "The Transporter Refueled". Similarity score: 0.21256302560184892. <br>
+Movie description: "The fast-paced action movie is again set in the criminal underworld in France, where Frank Martin is known as The Transporter, because he is the best driver and mercenary money can buy. In this installment, he meets Anna and they attempt to take down a group of ruthless Russian human traffickers who also have kidnapped Frank’s father." 
 
-## Deliverables
+Movie 4: "The Village". Similarity score: 0.17445331354748186. <br>
+Movie description: "When a willful young man tries to venture beyond his sequestered Pennsylvania hamlet, his actions set off a chain of chilling incidents that will alter the community forever." 
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+Movie 5: "Deep Impact". Similarity score: 0.16773760137379393. <br>
+Movie description: "A seven-mile-wide space rock is hurtling toward Earth, threatening to obliterate the planet. Now, it's up to the president of the United States to save the world. He appoints a tough-as-nails veteran astronaut to lead a joint American-Russian crew into space to destroy the comet before impact. Meanwhile, an enterprising reporter uses her smarts to uncover the scoop of the century." 
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
-
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
-
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+## Monthly Salary Expectation
+My salary expectations are <span>&dollar;</span>30/hr, so this would be approximately (30/hr)(20hrs/week)(4.5weeks/month) = <span>&dollar;</span>2,700/month.
