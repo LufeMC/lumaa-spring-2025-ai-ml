@@ -1,91 +1,60 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Lumaa's Recommender Challenge
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+This is Joshua Zingale's submition for Lumaa's recommender challenge. I used TF-IDF to generate vectors for each movie in the dataset that I used. A search query is vectorized with the same TF-IDF scheme and the nearest neighbors as determined by cosine similarity are returned as being the "closest" to the query. The main code for the submission lies in "data_challenge.ipynb".
 
----
+Here is a [link](https://youtu.be/XPsnBmDkZdE) to my demonstration video.
 
-## Overview
+## Dataset
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+I used a subset of this [kaggle dataset](https://www.kaggle.com/datasets/utkarshx27/movies-dataset?resource=download). I formed the subset by randomly (with a seed for reproducibility) sampling 500 rows from the dataset. I have included this dataset in "data/movie_dataset.csv". The included Jupyter Notebook and Python script load the data without need of modification.
 
-### Example Use Case
+## Setup
+- Python version: Python 3.9.6
+- Run `pip install -r requirements.txt`
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+## Running
+Using Jupyter Lab, you can open "data_challenge.ipynb" to see the code for this submission. In addition, at the bottom of the notebook are various example search queries. A new query may be made by adding a line that reads `search("your search query here")`.
 
----
+Alternatively, in a termal you can run `python3 recommend.py "your search query"` to get recommendations. Note: this code was copy and pasted from my notebook, meaning that the formatting for this script is not pretty. Please evaluate the organization of the notebook, not of this Python script.
 
-## Requirements
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+## Results
+The easiest way to view multiple tests of the system is to open "data_challenge.pdf", at the bottom of which are various search queries along with the top five matching movies for each.
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+For convenience, I have included one such test here:
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+` search("I love thrilling action movies set in space, with a comedic twist.")`
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+leading to the following output:
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+```
+Title: Zathura: A Space Adventure (661)
+Cosine Similarity 0.1374021423871016
+Keywords & Genres: adventure house alien giant robot outer space, Family Fantasy Science Fiction Adventure
+Overview: After their father is called into work, two young boys, Walter and Danny, are left in the care of their teenage sister, Lisa, and told they must stay inside. Walter and Danny, who anticipate a boring day, are shocked when they begin playing Zathura, a space-themed board game, which they realize has mystical powers when their house is shot into space. With the help of an astronaut, the boys attempt to return home.
 
----
+Title: Hard Rain (603)
+Cosine Similarity 0.1253841897040928
+Keywords & Genres: sheriff rain evacuation armored car crook, Thriller
+Overview: Get swept up in the action as an armored car driver (Christian Slater) tries to elude a gang of thieves (led by Morgan Freeman) while a flood ravages the countryside. Hard Rain is "a wild, thrilling, chilling action ride" filled with close calls, uncertain loyalties and heart-stopping heroics.
 
-## Deliverables
+Title: Capricorn One (3668)
+Cosine Similarity 0.11277092550372446
+Keywords & Genres: helicopter nasa texas spacecraft beguilement, Drama Action Thriller Science Fiction
+Overview: In order to protect the reputation of the American space program, a team of scientists stages a phony Mars landing. Willingly participating in the deception are a trio of well-meaning astronauts, who become liabilities when their space capsule is reported lost on re-entry. Now, with the help of a crusading reporter,they must battle a sinister conspiracy that will stop at nothing to keep the truth
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+Title: Up (66)
+Cosine Similarity 0.10420413628128734
+Keywords & Genres: age difference central and south america balloon animation floating in the air, Animation Comedy Family Adventure
+Overview: Carl Fredricksen spent his entire life dreaming of exploring the globe and experiencing life to its fullest. But at age 78, life seems to have passed him by, until a twist of fate (and a persistent 8-year old Wilderness Explorer named Russell) gives him a new lease on life.
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+Title: Galaxina (3534)
+Cosine Similarity 0.0858089039722489
+Keywords & Genres: android harley davidson cryogenics space travel love, Comedy Science Fiction
+Overview: Galaxina is a lifelike, voluptuous android who is assigned to oversee the operations of an intergalactic Space Police cruiser captained by incompetent Cornelius Butt. When a mission requires the ship's crew to be placed in suspended animation for decades, Galaxina finds herself alone for many years, developing emotions and falling in love with the ship's pilot, Thor.
+```
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+## Expected Salary
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+I expect something equating to $30 an hour. Thus with 20 hours a week and four weeks a month, I expect around $2400 per month.
