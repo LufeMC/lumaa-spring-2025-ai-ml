@@ -1,91 +1,126 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Movie Recommender System
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+A content-based movie recommendation system using TF-IDF and cosine similarity based on IMDB movie descriptions.
 
----
+## Dataset
+The system uses the [IMDB Movies Dataset from Kaggle](https://www.kaggle.com/datasets/ashpalsingh1525/imdb-movies-dataset).
 
-## Overview
+### Dataset Information
+- **Source**: Kaggle
+- **Size**: 9000+ movies
+- **Key Features**: Movie names, overview, genre, crew, budget, revenue, ratings
+- **Download**: 
+  1. Visit the Kaggle dataset link
+  2. Download 'imdb_movies.csv'
+  3. Place in project root directory
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+### Dataset Columns Used
+- `names`: Movie titles
+- `overview`: Movie plot descriptions
+- Additional columns available for potential feature enhancement:
+   -`names`
+   -`date_x`
+   -`score` 
+   -`genre`
+   -`overview`
+   -`crew`
+   -`orig_title`
+   -`status`
+   -`orig_lang`
+   -`budget_x`
+   -`revenue`
+   -`country`
 
-### Example Use Case
+## Setup
+### Requirements
+- Python 3.8+
+- pip
+- Kaggle account (for dataset download)
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+### Installation
+1. Create and activate a virtual environment:
+```bash
+python3 -m venv venv
+```
+2. Activate the Virtual Environment:
+- On Windows:
+```bash
+   .\venv\Scripts\activate
+```
+- On macOS/Linux:
+```bash
+   source venv/bin/activate
+```
 
----
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-## Requirements
+### Requirements.txt
+```
+pandas
+numpy
+matplotlib
+seaborn
+nltk
+scikit-learn
+```
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+## Running the System
+1. Ensure 'imdb_movies.csv' is in your project directory
+2. Run the recommendation system:
+```bash
+python3 Manjunath_Popuri_Movie_Recomendation_Task.py
+```
+3. Enter your movie preferences when prompted
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+## Sample Output
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+Input: 
+```
+"I love thrilling action movies set in space, with a comedic twist."
+```
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+Output:
+```
+Top Recommendations:
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+1. Step Up Love Story: Double Love
+   after three year of marriage and a bit more knowhow about sex this bumbling couple seem set but when jealousy set in the real trial of love begin
 
----
 
-## Deliverables
+2. Gurren Lagann the Movie: The Lights in the Sky Are Stars
+   seven year after the defeat of the spiral king simon and the dai gurren brigade must set out to the vastness of space to defeat a new threat and save the universe
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+3. Turning Red
+   thirteen year old mei is experiencing the awkwardness of being a teenager with a twist when she get too excited she transforms into a giant red panda
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+4. Gravity
+   dr ryan stone a brilliant medical engineer on her first shuttle mission with veteran astronaut matt kowalsky in command of his last flight before retiring but on a seemingly routine spacewalk disaster strike the shuttle is destroyed leaving stone and kowalsky completely alone tethered to nothing but each other and spiraling out into the blackness of space the deafening silence tell them they have lost any link to earth and any chance for rescue a fear turn to panic every gulp of air eats away at what little oxygen is left but the only way home may be to go further out into the terrifying expanse of space
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
 
----
+5. Lightyear
+   legendary space ranger buzz lightyear embarks on an intergalactic adventure alongside a group of ambitious recruit and his robot companion sox
+```
+![Output Image](output_img.png)
 
-## Evaluation Criteria
+## Code Structure
+- `Manjunath_Popuri_Movie_Recomendation_Task.py`: Main script containing recommendation system
+- Key functions:
+  - `load_data()`: Loads and preprocesses the IMDB dataset
+  - `preprocess_text()`: Cleans and normalizes movie descriptions
+  - `build_tfidf_matrix()`: Creates TF-IDF vectors from text
+  - `recommend_items()`: Generates recommendations based on user input
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+## Visualization
+The system includes a visualization component that shows:
+- Bar plot of similarity scores
+- Top recommended movies
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+## Expected Salary per month: 2000$ per month
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
 
-**We look forward to seeing your solution!** Good luck!
