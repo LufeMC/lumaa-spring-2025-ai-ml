@@ -1,91 +1,118 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+# Simple Content-Based Recommendation System
 
----
-
-## Overview
-
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
-
-### Example Use Case
-
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+This repository contains a basic content-based recommendation system. Given a short text description of a user’s preferences, the system suggests the most similar items (movies) from a small dataset.
 
 ---
 
-## Requirements
+## 1. Dataset
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+I use the **Movies Details** dataset from [Kaggle](https://www.kaggle.com/datasets/sachinkumar62/movies-details). It contains various movie information such as title, overview, and other metadata that help in constructing text-based similarity.
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+- **File**: `movies.csv`
+- **Source**: [Kaggle - Movies Details](https://www.kaggle.com/datasets/sachinkumar62/movies-details)
+---
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+## 2. Approach
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+1. **Text Vectorization**: I apply TF-IDF (Term Frequency–Inverse Document Frequency) to transform movie overviews into vectors.
+2. **Cosine Similarity**: I compare the user’s input text vector against each movie’s vector to measure similarity.
+3. **Top-N Recommendations**: I sort results by similarity and output the most relevant movies (e.g., top 5).
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+**Why Content-Based?**  
+- It allows recommendations based purely on text data (e.g., overview, keywords), without requiring user–item interactions or ratings.
 
 ---
 
-## Deliverables
+## 3. Repository Structure
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+- **recommendation.ipynb**  
+  Jupyter Notebook with the entire workflow:
+  - Data loading and cleaning
+  - TF-IDF vectorization
+  - Cosine similarity calculation
+  - Recommendation function to output the top matches
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+- **movies.csv**  
+  Dataset file containing movie information (title, overview, etc.).
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
-
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+- **README.md**  
+  This file (instructions and documentation).
 
 ---
 
-## Evaluation Criteria
+## 4. Setup and Dependencies
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+1. **Python version**: 3.8+ (tested on Python 3.9).
+2. **Libraries**:
+   - `pandas`
+   - `math`
+   - `re`
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+You can install these dependencies by running:
+```
+pip install -r requirements.txt
+```
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+---
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
+## 5. Running the Code
 
-**We look forward to seeing your solution!** Good luck!
+1. Clone or download this repository.
+2. Place `movies.csv` in the same folder (or update paths in `recommendation.ipynb` if needed).
+3. Open `recommendation.ipynb` in Jupyter (e.g., `jupyter notebook recommendation.ipynb`).
+4. Run the cells in order:
+   - **Data Loading**: Reads the CSV.
+   - **Preprocessing & Vectorization**: Transforms text into TF-IDF vectors.
+   - **Similarity Computation**: Sets up cosine similarity.
+   - **Recommendation**: Provide an input description (e.g. `"I love action movies set in space"`) and get the top recommended movies.
+
+
+---
+
+## 6. Example Usage
+
+**User Input**:
+```
+"I like action movies set in space"
+```
+
+**System Output**
+```
+User Input: 'I like action movies set in space'
+
+Recommended Movies:
+Captain Fantastic (Similarity: 0.2219)
+space pirate captain harlock and his fearless crew face off against the space invaders who seek to conquer the planet earth.
+
+A Clockwork Orange (Similarity: 0.1385)
+4 would be astronauts spend 400 days in a land locked space simulator to test the psychological effects of deep space travel but, when something goes terribly wrong and they are forced to leave the simulation, they discover that everything on earth has changed. is this real or is the simulation on a higher level than they could have ever imagined?
+
+Mulan (Similarity: 0.1306)
+a faithful wife takes action when it becomes clear to her that her devious husband has betrayed her.
+
+The Night of the Hunter (Similarity: 0.1254)
+a chronicle of the original mercury astronauts in the formation of america's space program: alan shepherd, the first american in space; gus grissom, the benighted astronaut for whom nothing works out as planned; john glenn, the straight-arrow 'boy scout' of the bunch who was the first american to orbit the earth; and the remaining pilots: deke slayton, scott carpenter and wally schirra.
+
+Citizen Kane (Similarity: 0.1074)
+joe, a young american soldier, is hit by a mortar shell on the last day of world war i. he lies in a hospital bed with a fate worse than death as a quadruple amputee who has lost his arms, legs, eyes, ears, mouth and nose. unbeknown to his doctors, he remains conscious and able to think, thereby reliving his life through strange dreams and memories.
+
+```
+(The exact titles and similarity scores will depend on how you process the data.)
+
+---
+
+## 7. Salary Expectation
+
+I’m available for 25 hours of work each week at $25/hour, translating to $2500 per month.
+
+
+---
+
+## 8. Demo
+
+Here is my demo video: 
+---
+
+
+**Thank you** for reviewing my submission! 
