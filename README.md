@@ -1,91 +1,52 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Content-Based Movie Recommendation System
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+## Dataset
 
----
+This project uses the **Wikipedia Movie Plots dataset** from Kaggle:  
+[Wikipedia Movie Plots Dataset](https://www.kaggle.com/datasets/jrobischon/wikipedia-movie-plots?resource=download)
 
-## Overview
-
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
-
-### Example Use Case
-
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+Since the original dataset is quite large, for simplicity, I have randomly selected **500 movies** to create a smaller dataset for this recommendation system.
 
 ---
 
-## Requirements
+## Setup
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
-
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
-
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
-
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
-
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+- No `requirements.txt` is needed.
+- The project is implemented in a **Jupyter Notebook (`.ipynb`)**.
+- You can run the notebook directly on **Google Colab** using the provided **Colab button** in the repository.
+- The **first cell in the notebook** contains a piece of code that will **automatically import the dataset** from the repository when executed.
+- The **second cell in the notebook** contains a piece of code that will **automatically import the dependencies** required.
 
 ---
 
-## Deliverables
+## Running the Code
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
-
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
-
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
-
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+1. Open the Jupyter Notebook (`.ipynb`) in **Google Colab** using the provided button.
+2. Run the **first cell** to import the dataset.
+3. Execute all cells in sequence to run the recommendation system.
+4. Provide a **movie-related query** (e.g., *"I love thrilling action movies set in space"*).
+5. The system will return the **top 5 recommended movies** based on text similarity.
 
 ---
 
-## Evaluation Criteria
+## Example Output
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+### **Query**:
+```plaintext
+I love thrilling action movies set in space, with a comedic twist.
+```
+### **Top 5 Recommended Movies**:
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+| Rank | Title                  | Similarity Score |
+|------|------------------------|-----------------|
+| 1    | What Love Is	         | 0.438784           |
+| 2    | Get Over It	      | 0.417528           |
+| 3    | Bedtime Stories	 | 0.411893          |
+| 4    | Aloha           | 0.385455           |
+| 5    | Superman: Unbound	        | 0.385011           |
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+## Demo
+A video demonstration of the recommendation system is available in [demo.md](demo.md).
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+## Salary Expectation:
+I am looking for $20–25 per hour, but my primary goal is to gain valuable learning experience. Salary is secondary, and I am open to accepting the minimum offered, as long as I have the opportunity to grow and contribute effectively.
