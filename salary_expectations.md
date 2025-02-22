@@ -1,0 +1,1 @@
+My salary expectation is 30/hr
