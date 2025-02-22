@@ -1,91 +1,117 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Movie Recommendation System
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+## Dataset
+
+- The dataset is sourced from Kaggle:  
+  [Wikipedia Movie Plots](https://www.kaggle.com/datasets/jrobischon/wikipedia-movie-plots/data)
+- A subset of 500 movies is generated from the full dataset using `data/generate_subset.py`.
+- The subset is stored as `data/movie_plots_subset.csv` and is automatically used when running the recommendation system.
+
+### Generating the Subset (if needed)
+To create a smaller dataset from the full dataset:
+```bash
+python data/generate_subset.py
+```
+
+## Setup
+
+### Python Environment
+
+- **Python Version**: `3.10.15`
+- **Set up virtual environment using pyenv:**
+  ```bash
+  pyenv virtualenv 3.10.15 lumaa
+  pyenv activate lumaa
+  ```
+- **Alternatively, using venv:**
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate  # Linux/Mac
+  venv\Scripts\activate     # Windows
+  ```
+- **Install dependencies:**
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+## Running
+
+To run the recommendation system using Jupyter Notebook from the command line:
+```bash
+jupyter notebook
+```
+Then open `solution.ipynb` and execute the cells step by step.
+
+## Results
+
+### Example Queries in the unit test and Outputs:
+
+🔹 **Basic Query**
+
+➡ Query: `I like action movies set in space`
+
+🔽 **Top Recommendations:**
+
+      1. The Doomsday Machine (Recommendation Score: 36.37/100)
+      2. Kaizoku Sentai Gokaiger vs. Space Sheriff Gavan: The Movie (Recommendation Score: 34.27/100)
+
+--------------------------------------------------
+
+🔹 **Short Query**
+
+➡ Query: `Action movie`
+
+🔽 **Top Recommendations:**
+
+      1. Fight Club – Members Only (Recommendation Score: 56.86/100)
+      2. Gallowwalkers (Recommendation Score: 51.30/100)
+      3. Speedway Junky (Recommendation Score: 48.81/100)
+      4. Anjathe (Recommendation Score: 47.72/100)
+      5. Gopi Kishan (Recommendation Score: 47.11/100)
+
+--------------------------------------------------
+
+🔹 **Long Query**
+
+➡ Query: `A detective solving a mystery in a dark and rainy city, filled with suspense, drama, and unexpected twists.`
+
+🔽 **Top Recommendations:**
+
+      1. The Bone Collector (Recommendation Score: 55.04/100)
+      2. The Arnelo Affair (Recommendation Score: 52.46/100)
+      3. Young and Innocent (Recommendation Score: 51.33/100)
+      4. Striking Distance (Recommendation Score: 51.17/100)
+      5. Romeo Is Bleeding (Recommendation Score: 51.02/100)
+
+--------------------------------------------------
+
+🔹 **Empty Query**
+
+➡ Query: ``
+
+🚫 **No recommendations available. Try a different query.**
+
+--------------------------------------------------
+
+🔹 **Irrelevant Query**
+
+➡ Query: `asdfghjkl qwerty lorem ipsum blah blah`
+
+🚫 **No recommendations available. Try a different query.**
+
+--------------------------------------------------
+
+✅ ~ ~ ~ All test cases completed! ~ ~ ~ ✅
+
+The system recommends movies based on **BERT embeddings** and **cosine similarity**, ranking them from most to least relevant.
 
 ---
 
-## Overview
+## Additional Information
+- **Desired Salary**:
+  - **Hourly**: $30 per hour
+  - **Monthly**: $2,400 per month
+  - **Availability**: ~20 hours per week
+- **LinkedIn Profile**: 
+  - [Keita Katsumi](https://www.linkedin.com/in/keita-katsumi-a4a639244/)
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
-
-### Example Use Case
-
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
-
----
-
-## Requirements
-
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
-
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
-
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
-
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
-
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
-
----
-
-## Deliverables
-
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
-
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
-
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
-
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
