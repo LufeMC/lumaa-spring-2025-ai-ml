@@ -17,75 +17,80 @@ Build a **content-based recommendation system** that, given a **short text descr
 
 ---
 
-## Requirements
+# Dataset
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+This system uses two CSV files:
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+**movies.csv**: Contains movie details including movieId, title, and genres.
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+**ratings.csv**: Contains user ratings with columns userId, movieId, rating, and timestamp.
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+To run the code you must download the dataset first ```https://www.kaggle.com/datasets/parasharmanas/movie-recommendation-system/data``` and put it in the Data directory. Ensure these files are in the Data directory. If you relocate them then you must change the lines:
+```
+movie_file = 'Data/movies.csv'
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+rating_file = 'Data/ratings.csv'
+```
 
 ---
 
-## Deliverables
+# Setup
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+Prerequisites
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+Python version: 3.8+
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+Install dependencies using:
+```
+pip install -r requirements.txt
+```
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+After installing dependencies, download the SpaCy language model:
+```
+python -m spacy download en_core_web_sm
+```
 
 ---
 
-## Evaluation Criteria
+# Running the Code
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+Run the Jupyter Notebook and execute the script interactively.
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+When prompted:
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+Enter ```1``` for content-based recommendation or ```2``` for hybrid recommendation.
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
+For content-based filtering, enter a movie description (e.g., *"I like action movies set in space"*).
 
-**We look forward to seeing your solution!** Good luck!
+For hybrid filtering, enter your ```userId```.
+
+---
+
+# Example Output
+
+```
+Enter '1' for content-based or '2' for hybrid recommendation: 1
+Enter movie description preferences: I love sci-fi and adventure films with lots of action.
+Extracted Genres: Action Sci-Fi Animation
+Recommended Movies:
+I Am So Proud of You (2008) (Score: 0.64)
+Alien Rising (2013) (Score: 0.57)
+Parasite Dolls (2003) (Score: 0.55)
+Ghost in the Shell 2.0 (2008) (Score: 0.54)
+The Cure (2014) (Score: 0.54)
+
+Enter '1' for content-based or '2' for hybrid recommendation: 1
+Enter your user ID: 3
+Recommended Movies:
+Children of Men (2006) (Score: 468.05)
+Fire From Below (2009) (Score: 456.74)
+Day After Tomorrow, The (2004) (Score: 445.39)
+Jumper (2008) (Score: 435.52)
+Batman (1943) (Score: 435.37)
+```
+
+
+
+
+
+
