@@ -1,91 +1,52 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Simple Content-Based Movie Recommendation System
+This project implements a content-based recommendation system that suggests movies based on a user’s text description of preferences. It uses TF-IDF vectorization and cosine similarity to match queries to movie plots.
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+## Dataset
+- Source:`jrobischon/wikipedia-movie-plots` from Kaggle.
+- Description: Wikipedia movie plot summaries with `Title` and `Plot` columns.
+- Preprocessing:
+  - Randomly sample 500 rows to meet the challenge’s small dataset requirement (100–500 rows).
+  - Dropped rows with missing `Plot` values.
+  
+  **Note**: The system samples 500 movies from the original kaggle dataset to meet the challenge’s size constraint (100–500 rows). This random sampling may exclude some genres (e.g., space-action comedies), which could make search results seem less accurate for certain queries. For broader coverage, the full dataset (~35K rows) could be used, but this version prioritizes simplicity and efficiency.
 
----
+## Setup
+1. Prerequisites:
+   - Python 3.9
+   - Conda
+   - Kaggle API key for `kagglehub`
+2. Create and Activate Conda Environment
+``` bash
+conda create -n recsys python=3.9
+conda activate recsys
+```
+3. Install Dependencies:
+```bash
+pip install -r requirements.txt
+```
+4. Register Kernel for Jupyter
+```
+python -m ipykernel install --user --name recsys --display-name "Recommendation System (recsys)"
+```
 
-## Overview
+Kaggle Authentication
+- Download your Kaggle API key (`kaggle.json`) from Kaggle > Account > Create New API Token.
+- Place it in `~/.kaggle/` (Linux/macOS) or `C:\Users\YourUsername\.kaggle\` (Windows).
+- Set permissions (Linux/macOS): `chmod 600 ~/.kaggle/kaggle.json.`
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+## Running the Code
+1. Open the Jupyter Notebook
+``` bash
+cd path/to/your/repo
+jupyter notebook recommendation_system.ipynb
+```
+2. Run All Cells:
+- In Jupyter, select `Kernel > Restart & Run All` to execute the code.
+- The notebook loads the dataset, vectorizes plots, defines the recommendation function, and tests sample queries.
+  
+3. Test Your Own Query:
+Edit the last cell’s `sample_query` variable (e.g., `sample_query = "Your description here"`) and re-run it.
 
-### Example Use Case
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
-
----
-
-## Requirements
-
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
-
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
-
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
-
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
-
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
-
----
-
-## Deliverables
-
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
-
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
-
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
-
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+## Salary Expectation
+- $3000 per month
