@@ -1,0 +1,1 @@
+Here is the link to the demo video: https://drive.google.com/file/d/1ou82UJ1lMA_D5P8GL8o_AWzEG0DrqRYR/view?usp=sharing. Feel free to skip from 0:39 to 3:12, as this is when the lengthy vectorization process happens. 
