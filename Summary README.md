@@ -13,4 +13,3 @@ Top recommendations for 'I want to watch a movie about the British politicians':
 2. We Still Kill the Old Way (similarity: 0.201)
 3. Four Lions (similarity: 0.197)
 
-Salary expectations (monthly): $5000 (negotiable)
