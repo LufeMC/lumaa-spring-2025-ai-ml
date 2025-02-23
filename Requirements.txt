@@ -1,0 +1,6 @@
+pandas
+numpy
+scikit-learn 
+jupyter  # If you're working in Jupyter Notebook
+kaggle
+kagglehub
