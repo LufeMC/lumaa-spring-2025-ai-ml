@@ -1,91 +1,109 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# 🎬 Movie Magic: Content-Based Movie Recommender
+### Lumaa AI/ML Internship Technical Assessment
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+Welcome to my submission for the Lumaa AI/ML internship challenge! I've built a smart movie recommendation system that understands natural language queries and finds the perfect movie matches. The system combines the power of word embeddings with weighted similarity matching to deliver personalized movie recommendations.
 
----
+This project was completed as part of Lumaa's technical assessment requirements, demonstrating practical implementation of content-based recommendation systems.
 
-## Overview
+## 🚀 Ready to Discover Movies?
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+### Option 1: The Easy Way (Recommended!)
+Skip the setup and jump right in! Visit the live system:
+http://ec2-54-152-44-163.compute-1.amazonaws.com/
 
-### Example Use Case
+Just type what you're in the mood for, and let the movie magic happen! ✨
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+⚠️ **Important Note**: Make sure to use **HTTP** not HTTPS! The URL must start with `http://`
 
----
 
-## Requirements
+### Option 2: Run it Locally (For the Curious Minds)
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+Want to tinker with the system on your machine? Here's how:
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+1. Make sure you have Python 3.8+ installed
+2. Install the dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+3. Start recommending:
+```bash
+python model.py
+```
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+That's it! No complicated setup, just pure movie recommendation goodness! 🍿
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+## 🎥 See It In Action!
 
----
+I've prepared two demo videos to show the system in action:
 
-## Deliverables
+1. **Website Demo** - See the deployed web interface:
+   - [Watch Website Demo](./Website%20demo.mov)
+   - Shows the live website in action
+   - Demonstrates real-time recommendations
+   - Showcases the user interface
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+2. **CLI Demo** - Watch the command-line version:
+   - [Watch CLI Demo](./CLI%20demo.mov)
+   - Demonstrates the core functionality
+   - Shows how the system processes queries
+   - Displays raw recommendation outputs
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+## ⚡ What Makes it Awesome?
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+The movie matchmaker uses some pretty cool tech under the hood:
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+- 🧠 Smart natural language understanding
+- 🎯 Precise matching using word embeddings (GloVe)
+- ⚖️ Clever weighting system that considers everything from plot to cast
+- 🎭 Multi-feature analysis
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+## 🎯 How It Works
 
----
+Tell it what you're in the mood for, like:
+- "Something with lots of explosions and car chases"
+- "A heartwarming story about friendship"
+- "Space adventures with cool aliens"
 
-## Evaluation Criteria
+And watch as it finds the perfect movies for your taste! The system looks at:
+- What the movie's about
+- Who's in it
+- What genre it is
+- Special keywords
+- And lots more!
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+## 🎮 The Secret Sauce
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+For the technically curious, here's what's happening behind the scenes:
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+I've assigned different weights to different movie aspects:
+- Plot Overview: 2.5 (because story matters!)
+- Genre: 1.5 (action? comedy? both?)
+- Keywords: 2.0 (the good stuff!)
+- Tagline: 1.0 (those catchy phrases)
+- Cast: 1.5 (star power!)
+- Director: 1.0 (the vision)
+- Title: 2.0 (names matter!)
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
+Want to tweak these? Just adjust the weights in `model.py` and make it your own! 
 
-**We look forward to seeing your solution!** Good luck!
+## 📊 What to Expect
+
+When you ask for something like "Something with lots of explosions and car chases", you'll get:
+
+![A list of movies with explosions and car chases](image.png)
+
+
+## 🎥 The Movie Database
+
+The system uses a carefully curated movie dataset with all the good stuff:
+- Titles (of course!)
+- Plot overviews (what's it all about?)
+- Genres (action? romance? mystery?)
+- Keywords (the juicy details)
+- Cast (who's in it?)
+- Directors (who made it?)
+
+Happy watching! 🎉
+
+Salary Expectation - $3200 - $4000/month ($20-$25/hr, 40hrs a week)
