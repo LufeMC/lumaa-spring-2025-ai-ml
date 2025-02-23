@@ -17,7 +17,7 @@ I use the **Movies Details** dataset from [Kaggle](https://www.kaggle.com/datase
 
 1. **Text Vectorization**: I apply TF-IDF (Term Frequency–Inverse Document Frequency) to transform movie overviews into vectors.
 2. **Cosine Similarity**: I compare the user’s input text vector against each movie’s vector to measure similarity.
-3. **Top-N Recommendations**: I sort results by similarity and output the most relevant movies (e.g., top 5).
+3. **Top-N Recommendations**: I sort results by similarity and output the most relevant movies.
 
 **Why Content-Based?**  
 - It allows recommendations based purely on text data (e.g., overview, keywords), without requiring user–item interactions or ratings.
@@ -43,7 +43,7 @@ I use the **Movies Details** dataset from [Kaggle](https://www.kaggle.com/datase
 
 ## 4. Setup and Dependencies
 
-1. **Python version**: 3.8+ (tested on Python 3.9).
+1. **Python version**: 3.8+
 2. **Libraries**:
    - `pandas`
    - `math`
@@ -104,15 +104,9 @@ joe, a young american soldier, is hit by a mortar shell on the last day of world
 
 ## 7. Salary Expectation
 
-I’m available for 25 hours of work each week at $25/hour, translating to $2500 per month.
+I’m available for 30 hours of work each week at $25/hour, translating to $3000 per month.
 
 
----
-
-## 8. Demo
-
-Here is my demo video: 
----
 
 
 **Thank you** for reviewing my submission! 
