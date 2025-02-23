@@ -1,91 +1,81 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
-
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
-
----
+# **Content-Based Movie Recommendation System**
 
 ## Overview
+This project implements a **content-based recommendation system** that suggests **similar movies** based on a user's text input. The system analyzes **movie plot summaries and genres** to generate relevant recommendations using **TF-IDF vectorization and cosine similarity**.
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
 
-### Example Use Case
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+## Dataset
+- **Source** [IMDb Dataset of Top 1000 Movies and TV Shows - Kaggle](https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows). Download the dataset from given source (data will be uploaded to repository as well) and save it in desired location. Change the path to dataset in the notebook accordingly.
 
----
+## Setup Instructions
+Fork the repository and do the following: 
 
-## Requirements
+### **Install Python (Recommended Version: `Python 3.8+`)**
+Ensure you have Python installed. You can check by running:
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+```bash
+python --version
+```
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+### **Create a virtual environment**
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+**For Windows**
+```bash 
+python -m venv env
+env\Scripts\activate
+```
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+**For MacOS**
+```bash 
+python3 -m venv env
+source env/bin/activate
+```
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+### Install required dependencies
+```bash
+pip install -r requirements.txt
+```
 
----
+## Code Execution and Results
+Head over to [notebook](task.ipynb) and select the appropriate Python environment for execution. Sample results are given below:
 
-## Deliverables
+```
+## Example usage and results for first TFIDF system
+recommend_from_text(
+    "I love thrilling action movies set in space, with a comedic twist.",
+    tfidf1,  # TF-IDF vectorizer
+    df,  # DataFrame with movies
+    tfidf_matrix1  # TF-IDF feature matrix
+)
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+[
+    ('Amarcord', 0.2784726107555797),
+    ('Aliens', 0.13616430405418317),
+    ('The Man Who Would Be King', 0.13217272989380913),
+    ('Barton Fink', 0.1237384750664491),
+    ('Clerks', 0.11124411444494568)
+]
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+## Example usage and results for second TFIDF system
+recommend_from_text(
+    "I love thrilling action movies set in space, with a comedic twist.",
+    tfidf2,  # TF-IDF vectorizer
+    df,  # DataFrame with movies
+    tfidf_matrix2  # TF-IDF feature matrix
+)
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+[
+    ('Aliens', 0.36088016259286),
+    ('Ghostbusters', 0.32641761200184327),
+    ('Amarcord', 0.30567397359201156),
+    ('Gattaca', 0.29298248355943465),
+    ('Blade Runner', 0.2845828047168738)
+]
+```
+**Comments**
+- The reduced vector space size in the second recommendation system makes it more relevant, as we get results with higher similarity scores. It includes **Ghostbusters**, which aligns with **comedy+sci-fi** action theme. Additionally, **Gattaca** & **Blade Runner** add strong **sci-fi/thriller** elements to the second system. 
+- **Aliens** is the only consistent correct recommendation among the two systems. 
+- The first system's result is more focussed on **comedy**.
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+For accessing the video demo, refer **DEMO.md**. 
