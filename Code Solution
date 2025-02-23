@@ -1,0 +1,63 @@
+Here is my code to the content based recommendation assignment.
+
+import os
+import sys
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+def load_data(csv_path: str) -> pd.DataFrame:
+    df = pd.read_csv(csv_path)
+    df['combined_text'] = df['Title'] + " " + df['Description']
+    return df
+
+def build_tfidf_matrix(descriptions):
+    vectorizer = TfidfVectorizer(
+        stop_words='english',  
+        lowercase=True,   
+        max_df=0.8,
+        ngram_range=(1,1),          
+        min_df=1               
+    )
+    tfidf_matrix = vectorizer.fit_transform(descriptions)
+    return tfidf_matrix, vectorizer
+
+def get_top_n_recommendations(query, vectorizer, tfidf_matrix, df, top_n):
+    query_vector = vectorizer.transform([query])
+    if query_vector.sum() == 0:
+        print("Warning: No terms in your query matched the dataset.")
+        return []
+
+    similarities = cosine_similarity(query_vector, tfidf_matrix).flatten()
+    top_indices = similarities.argsort()[::-1][:top_n]
+    
+    results = []
+    for idx in top_indices:
+        results.append({
+            'Title': df.loc[idx, 'Title'],
+            'similarity': round(similarities[idx], 3)
+        })
+    return results
+
+if __name__ == "__main__":
+    df = load_data('/Users/benjaminham/Desktop/movies.csv')
+    
+    tfidf_matrix, vectorizer = build_tfidf_matrix(df['combined_text'])
+    
+    if len(sys.argv) < 2:
+        print("Usage: python recommend.py \"Your movie query here\"")
+        sys.exit(1)
+        
+    user_query = "I want to watch a movie about the British politicians"
+    top_n = 3
+    recommendations = get_top_n_recommendations(user_query, vectorizer, tfidf_matrix, df, top_n)
+    if recommendations:
+        print(f"Top recommendations for '{user_query}':")
+        for i, rec in enumerate(recommendations, start=1):
+            print(f"{i}. {rec['Title']} (similarity: {rec['similarity']})")
+
+Results from user_query and top_n:
+Top recommendations for 'I want to watch a movie about the British politicians':
+1. House of Cards (similarity: 0.222)
+2. We Still Kill the Old Way (similarity: 0.201)
+3. Four Lions (similarity: 0.197)
