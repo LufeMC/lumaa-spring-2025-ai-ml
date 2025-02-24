@@ -9,13 +9,6 @@ Overview
 Genre (processed as a list instead of JSON/dictionary)
 Tagline
 
-### Note:
-If you want to perform the dataset filteration and processing steps, please download the movies_metadata.csv file from the link given above and run the dataset_preprocessing.py file using the command below. 
-```bash
-python dataset_processing.py 
-```
-However, this is not needed as I have already performed the process and saved the results in movies.csv which is added to this repo.
-
 ## Setup
 ### Requirements
 - Python 3.8+
@@ -94,3 +87,8 @@ Plot: A documentary-style short film about the arrival of an alien spaceship ove
 
 ## Notes
 - Ensure `movies.csv` is present in the same directory as the script.
+- If you want to perform the dataset filteration and processing steps, please download the movies_metadata.csv file from the link given above and run the dataset_preprocessing.py file using the command below. 
+```bash
+python dataset_processing.py 
+```
+However, this is not needed as I have already performed the process and saved the results in movies.csv which is added to this repo.
