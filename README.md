@@ -1,91 +1,93 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Movie Recommendation System
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+## Dataset
+The dataset used in this project is obtained from Kaggle: "https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=movies_metadata.csv". It contains information about movies and their descriptions. 
+The datset has been preprocessed, and the results are saved in movies.csv. The file includes only the top 500 movies, ensuring coverage across all genres. The final dataset retains only the following fields:
 
----
+Title
+Overview
+Genre (processed as a list instead of JSON/dictionary)
+Tagline
 
-## Overview
+### Note:
+If you want to perform the dataset filteration and processing steps, please download the movies_metadata.csv file from the link given above and run the dataset_preprocessing.py file using the command below. 
+```bash
+python dataset_processing.py 
+```
+However, this is not needed as I have already performed the process and saved the results in movies.csv
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+## Setup
+### Requirements
+- Python 3.8+
+- Jupyter Notebook
 
-### Example Use Case
+### Installation
+1. Clone this repository:
+   ```bash
+   git clone <repository-url>
+   cd <project-directory>
+   ```
+2. Create a virtual environment (Recommended):
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
+3. Install dependencies: 
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+## Running the Code
+To run the code, open Jupyter Notebook and open the file movie_rec.ipynb and execute the cells step by step.
 
----
+To run the code from command terminal, I have converted the ipynb file to py file so you can directly run it there:
+```bash
+python movie_rec.py 
+```
+The user will be prompted with - "What kind of movie are you looking for? ". Give your input here.
+Next there is another prompt - "Do you want to read the plots of these movies as well? (yes/no): "
 
-## Requirements
+## Sample Results
+For example, if the input is:
+```bash
+"A science fiction movie with space adventure"
+```
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+```bash
+"Yes"
+```
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+The output would be:
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+```
+Here are the top 5 movies recommended for you:
+Battleship
+Ender's Game
+Independence Day: Resurgence
+The 5th Wave
+Edge of Tomorrow
+```
+Do you want to read the plots of these movies as well? (yes/no): yes
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+Movie: Battleship
+Plot: When mankind beams a radio signal into space, a reply comes from ‘Planet G’, in the form of several alien crafts that splash down in the waters off Hawaii. Lieutenant Alex Hopper is a weapons officer assigned to the USS John Paul Jones, part of an international naval coalition which becomes the world's last hope for survival as they engage the hostile alien force of unimaginable strength. While taking on the invaders, Hopper must also try to live up to the potential his brother, and his fiancée's father, Admiral Shane, expect of him.
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
 
----
+Movie: Ender's Game
+Plot: Based on the classic novel by Orson Scott Card, Ender's Game is the story of the Earth's most gifted children training to defend their homeplanet in the space wars of the future.
 
-## Deliverables
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+Movie: Independence Day: Resurgence
+Plot: We always knew they were coming back. Using recovered alien technology, the nations of Earth have collaborated on an immense defense program to protect the planet. But nothing can prepare us for the aliens’ advanced and unprecedented force. Only the ingenuity of a few brave men and women can bring our world back from the brink of extinction.
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+Movie: The 5th Wave
+Plot: 16-year-old Cassie Sullivan tries to survive in a world devastated by the waves of an alien invasion that has already decimated the population and knocked mankind back to the Stone Age.
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+Movie: Edge of Tomorrow
+Plot: Major Bill Cage is an officer who has never seen a day of combat when he is unceremoniously demoted and dropped into combat. Cage is killed within minutes, managing to take an alpha alien down with him. He awakens back at the beginning of the same day and is forced to fight and die again... and again - as physical contact with the alien has thrown him into a time loop.
 
----
 
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+## Notes
+- Ensure `movies.csv` is present in the same directory as the script.
