@@ -1,91 +1,94 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Movie Recommendation System
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+## Dataset
+The dataset used in this project is obtained from Kaggle: "https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=movies_metadata.csv". It contains information about movies and their descriptions. 
+The datset has been preprocessed, and the results are saved in movies.csv. The file includes only the top 500 movies, ensuring coverage across all genres. The final dataset retains only the following fields:
 
----
+Title
+Overview
+Genre (processed as a list instead of JSON/dictionary)
+Tagline
 
-## Overview
+## Setup
+### Requirements
+- Python 3.8+
+- Jupyter Notebook
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+### Installation
+1. Clone this repository:
+   ```bash
+   git clone "https://github.com/shruthic06/lumaa-spring-2025-ai-ml"
+   cd lumaa-spring-2025-ai-ml
+   ```
+2. Create a virtual environment (Recommended):
+   ```bash
+   python3 -m venv <path-to-lumaa-spring-2025-ai-ml>
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
+3. Install dependencies: 
+   ```bash
+   pip3 install -r requirements.txt
+   ```
 
-### Example Use Case
+## Running the Code
+To run the code, open Jupyter Notebook by the command jupyter notebook in the terminal and open the file movie_recommendation.ipynb and click on run all.
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+To run the code from command terminal, I have converted the ipynb file to py file so you can directly run it there:
+```bash
+python movie_recommendation.py 
+```
+The user will be prompted with - "What kind of movie are you looking for? ". Give your input here.
+Next there is another prompt - "Do you want to read the plots of these movies as well? (yes/no): "
 
----
+## Sample Results
+For example, if the input is:
+```bash
+"A science fiction movie with aliens"
+```
 
-## Requirements
+```bash
+"Yes"
+```
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+The output would be:
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+```
+Here are the top 5 movies recommended for you:
+Childhood's End
+Parasyte: Part 1
+Parasyte: Part 2
+Independents' Day
+Alive in Joburg
+```
+Do you want to read the plots of these movies as well? (yes/no): yes
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+Movie: Childhood's End
+Plot: After peaceful aliens invade earth, humanity finds itself living in a utopia under the indirect rule of the aliens, but does this utopia come at a price?
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+Movie: Parasyte: Part 1
+Plot: Alien pods come to Earth and, naturally, start taking over Human Hosts. One such pod only manages to take over one human's, Shin Izumi, right arm. Together they grow and co-exist, all the while the other aliens are making meals of other humans; Shin feels he must put a stop to it all, but his alien, Migi, doesn't see why.
 
----
 
-## Deliverables
+Movie: Parasyte: Part 2
+Plot: Alien pods come to Earth and, naturally, start taking over Human Hosts. One such pod only manages to take over one human's, Shin Izumi, right arm. Together they grow and co-exist, all the while the other aliens are making meals of other humans; Shin feels he must put a stop to it all, but his alien, Migi, doesn't see why.
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+Movie: Independents' Day
+Plot: Aliens invade, this time delivering a clear ultimatum. The fate of humanity hangs in the balance as the U.S. President and citizens decide if these aliens are to be trusted ...or feared.
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+Movie: Alive in Joburg
+Plot: A documentary-style short film about the arrival of an alien spaceship over Johannesburg, South Africa.
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
 
----
+**[Click Here to Watch the Demo](https://drive.google.com/drive/folders/1o4hYsuO6sq6LqEK9hMQXlw8bW-GoSwNw?usp=sharing)**
 
-## Evaluation Criteria
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+## Notes
+- Ensure `movies.csv` is present in the same directory as the script.
+- If you want to perform the dataset filteration and processing steps, please download the movies_metadata.csv file from the link given above and run the dataset_preprocessing.py file using the command below. 
+```bash
+python dataset_processing.py 
+```
+However, this is not needed as I have already performed the process and saved the results in movies.csv which is added to this repo.
