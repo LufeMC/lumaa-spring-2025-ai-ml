@@ -14,7 +14,7 @@ If you want to perform the dataset filteration and processing steps, please down
 ```bash
 python dataset_processing.py 
 ```
-However, this is not needed as I have already performed the process and saved the results in movies.csv
+However, this is not needed as I have already performed the process and saved the results in movies.csv which is added to this repo.
 
 ## Setup
 ### Requirements
@@ -42,7 +42,7 @@ To run the code, open Jupyter Notebook and open the file movie_recommendation.ip
 
 To run the code from command terminal, I have converted the ipynb file to py file so you can directly run it there:
 ```bash
-python movie_rec.py 
+python movie_recommendation.py 
 ```
 The user will be prompted with - "What kind of movie are you looking for? ". Give your input here.
 Next there is another prompt - "Do you want to read the plots of these movies as well? (yes/no): "
