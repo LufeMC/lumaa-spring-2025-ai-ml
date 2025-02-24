@@ -1,91 +1,96 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
-
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
-
----
+# News Category Dataset Analysis
 
 ## Overview
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+This project analyzes and processes the **News Category Dataset** from Kaggle. The dataset consists of news articles categorized into different topics. The notebook includes data preprocessing, vectorization, and a recommendation system.
 
-### Example Use Case
+## Video Demo
+[![Watch the demo video](https://img.youtube.com/vi/IM1ZOGOwegQ/0.jpg)](https://www.youtube.com/watch?v=IM1ZOGOwegQ)
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
 
----
 
-## Requirements
+## Dataset
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+- **Source:** [News Category Dataset](https://www.kaggle.com/rmisra/news-category-dataset)
+- **Format:** JSON
+- **Contains:** News headlines, short descriptions, category labels, and more
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+## Features
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+- Downloads the dataset using `kagglehub`
+- Converts JSON data into a Pandas DataFrame
+- Vectorizes textual data for processing
+- Implements a news recommender function
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+## Installation
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/your-repo.git
+   cd your-repo
+   ```
+2. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. Ensure you have Kaggle API access set up to download the dataset.
 
----
+## Dependencies
 
-## Deliverables
+- Python 3.x
+- Pandas
+- NumPy
+- Kaggle API
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+## Usage
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+Run the Jupyter Notebook:
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+```sh
+jupyter notebook solution.ipynb
+```
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+## Results
 
----
+Below is an example output of the news recommender system:
 
-## Evaluation Criteria
+### Query:
+**"Health benefits of green tea"**
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+### Recommended Articles:
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+#### 1. Tea Health Benefits: 8 Ways It Could Benefit Our Bodies
+- **Description:** A cup of tea anyone? It could do wonders for your health. A lot of research has focused on green tea in particular, Health.com
+- **Similarity Score:** 0.7115
+- **[Read More](https://www.huffingtonpost.com/entry/tea-health-benefits-cancer-heart-disease_us_5b9c2e55e4b03a1dcc7ce60b)
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+#### 2. Green Tea Benefits: How The Drink Improves Your Health
+- **Description:** While experts agree that more research is still needed, this only adds to the body of work linking green tea to healthy, happy.
+- **Similarity Score:** 0.6392
+- **[Read More](https://www.huffingtonpost.com/entry/green-tea-benefits-health_us_5b9c6ec9e4b03a1dcc7e965a)
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
+#### 3. Green Tea Could Help Functioning In Old Age: Study
+- **Description:** Green tea has long been eyed for possible health benefits, including its potential to decrease the risk of certain cancers.
+- **Similarity Score:** 0.6156
+- **[Read More](https://www.huffingtonpost.com/entry/green-tea-functioning-old-age_us_5b9b4994e4b03a1dcc765816)
 
-**We look forward to seeing your solution!** Good luck!
+#### 4. 6 Amazing Benefits of Tea
+- **Description:** For those that have not yet embraced a tea-drinking habit, it's never too late to start brewing a batch! Explore the various types, flavors, and brands to find your tea-mate.
+- **Similarity Score:** 0.4471
+- **[Read More](https://www.huffingtonpost.com/entry/tea-health-benefits_us_5b9d4d2be4b03a1dcc866e19)
+
+#### 5. Will And Kate Anniversary: Tetley Tea Gives Away A Year's Supply Of Tea
+- **Description:** To get 12 full-size boxes of different varieties of the tea including Classic Blend, Pure Green, Iced Tea blend and of course.
+- **Similarity Score:** 0.4450
+- **[Read More](https://www.huffingtonpost.com/entry/will-and-kate-anniversary_us_5b9ba2a3e4b03a1dcc79328e)
+
+
+
+
+## Desired compensation
+4500 USD/month
+
+## Contact
+Email ID - ggandhikumar@ucsd.edu
+
