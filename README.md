@@ -38,7 +38,7 @@ However, this is not needed as I have already performed the process and saved th
    ```
 
 ## Running the Code
-To run the code, open Jupyter Notebook and open the file movie_rec.ipynb and execute the cells step by step.
+To run the code, open Jupyter Notebook and open the file movie_recommendation.ipynb and execute the cells step by step.
 
 To run the code from command terminal, I have converted the ipynb file to py file so you can directly run it there:
 ```bash
