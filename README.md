@@ -1,91 +1,79 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Simple Movie Recommendation System
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+Thanks for checking out my submission for the Lumaa AI/Machine Learning Intern Challenge! For my submission, I've built a movie recommendation system that is easy and straightforward to use. Let's dive into the details of my project!
 
----
+## Dataset
 
-## Overview
+The dataset that I've used for this project is the [Wikipedia Movie Plots](https://www.kaggle.com/datasets/jrobischon/wikipedia-movie-plots) dataset from Kaggle. Without any modification, the dataset contains information for about 35,000 movies, which is way too many movies for this project! I've included a modified version of this dataset, `movie_plots.csv`, in my submission, which only contains the first 500 rows from the dataset. This means that you will not need to take any steps to download the dataset and add it to my project, but feel free to check out the entire dataset on Kaggle if you wish.
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+## Setup
 
-### Example Use Case
+This project requires Python 3.7 at the minimum to run, but the Python version should ideally be higher for better compatibility and performance. Once you have my project folder opened up, you can run `pip install -r requirements.txt` to install all the needed dependencies for this project.
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+## Running The Code
 
----
+Running my project is a simple process! First, open up the `recommender.ipynb` Jupyter Notebook. Then, make sure to run all of the cells involving the project's imports and functions. In the middle of the Jupyter Notebook, you will see a cell where you can enter your query and modify how many recommendations you would like. Simply edit the string stored by the `query` variable to enter your query, and edit `matches` if you want to adjust how many recommendations you want. Then, run all the cells that follow, and you will be presented with a neat list of your top movie recommendations, based on your query.
 
-## Requirements
+## Example Usage
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+Let's say I like romantic comedies with lots of drama. If `query` is `"I love romantic comedies with lots of drama."` and `matches` is `3`, then the following DataFrame will be output in the cell below:
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+| Title | Plot |
+| ----------- | ----------- |
+| Oh Doctor! | As described in Exhibitors Herald, a film magazine,[3] Dr. Fatty Holepoke (Arbuckle) bets all of his money on a horse and loses it. He becomes entangled in the meshes of a vampire (Mann), but when he hears the voice of "his master" (his wife), he finds himself in a serious predicament. With the assistance of a uniform stolen from a policeman, he manages to get away. He tries his luck again with the horses and wins lots of money. However, when he walks down the street his wife relieves him of all of it and leads him home, even though she is half his size. |
+| Caught in a Cabaret | Chaplin plays a waiter who fakes being a Greek Ambassador to impress a girl. He then is invited to a garden party where he gets in trouble with the girl's jealous boyfriend. Mabel Normand wrote and directed comedies before Chaplin and mentored her young co-star. |
+| Romance | As described in a film publication,[2] a youth (Arthur Rankin) in the prologue seeks advice from his grandfather (Sydney), who then recalls a romance of his own youth which is then shown as a flashback. A priest (Sydney) is in love with an Italian opera singer (Keane), and the drama involves the conflict between his efforts to rise above worldly things or to leave with her. The romance ends with a deep note of pathos. |
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+In the cell following the above output, there is a function that will more neatly display your movie recommendations. Running that cell will output a list of the recommended movies in this format:
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+### **Oh Doctor!**
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+As described in Exhibitors Herald, a film magazine,[3] Dr. Fatty Holepoke (Arbuckle) bets all of his money on a horse and loses it. He becomes entangled in the meshes of a vampire (Mann), but when he hears the voice of "his master" (his wife), he finds himself in a serious predicament. With the assistance of a uniform stolen from a policeman, he manages to get away. He tries his luck again with the horses and wins lots of money. However, when he walks down the street his wife relieves him of all of it and leads him home, even though she is half his size.
 
----
+### **Caught in a Cabaret**
 
-## Deliverables
+Chaplin plays a waiter who fakes being a Greek Ambassador to impress a girl. He then is invited to a garden party where he gets in trouble with the girl's jealous boyfriend. Mabel Normand wrote and directed comedies before Chaplin and mentored her young co-star.
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+### **Romance**
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+As described in a film publication,[2] a youth (Arthur Rankin) in the prologue seeks advice from his grandfather (Sydney), who then recalls a romance of his own youth which is then shown as a flashback. A priest (Sydney) is in love with an Italian opera singer (Keane), and the drama involves the conflict between his efforts to rise above worldly things or to leave with her. The romance ends with a deep note of pathos.
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+If I like movies about cops and robbers, I might set `query` to be `"Cops and robbers movies are my favorite."` and set `matches` to be `5`. The following DataFrame will appear:
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+| Title | Plot |
+| ----------- | ----------- |
+| The Little Train Robbery | The opening scene shows the interior of the robbers' den. The walls are decorated with the portraits of notorious criminals and pictures illustrating the exploits of famous bandits. Some of the gang are lounging about, while others are reading novels and illustrated papers. Although of youthful appearance, each is dressed like a typical Western desperado. The "Bandit Queen," leading a blindfolded new recruit, now enters the room. He is led to the center of the room, raises his right hand and is solemnly sworn in. When the bandage is removed from his eyes he finds himself looking into the muzzles of a dozen or more 45's. The gang then congratulates the new member and heartily shake his hand. The "Bandit Queen" who is evidently the leader of the gang, now calls for volunteers to hold up a train. All respond, but she picks out seven for the job who immediately leave the cabin. The next scene shows the gang breaking into a barn. They steal ponies and ride away. Upon reaching the place agreed upon they picket their ponies and leaving them in charge of a trusted member proceed to a wild mountain spot in a bend of the railroad, where the road runs over a steep embankment. The spot is an ideal one for holding up a train. Cross ties are now placed on the railroad track and the gang hide in some bushes close by and wait for the train. The train soon approaches and is brought to a stop. The engineer leaves his engine and proceeds to remove the obstruction on the track. While he is bending over one of the gang sneaks up behind them and hits him on the head with an axe, and knocks him senseless down the embankment, while the gang surround the train and hold up the passengers. After securing all the "valuables," consisting principally of candy and dolls, the robbers uncouple the engine and one car and make their escape just in time to avoid a posse of police who appear on the scene. Further up the road they abandon the engine and car, take to the woods and soon reach their ponies. In the meantime the police have learned the particulars of the hold-up from the frightened passengers and have started up the railroad tracks after the fleeing robbers. The robbers are next seen riding up the bed of a shallow stream and finally reach their den, where the remainder of the gang have been waiting for them. Believing they have successfully eluded their pursuers, they proceed to divide the "plunder." The police, however, have struck the right trail and are in close pursuit. While the "plunder" is being divided a sentry gives the alarm and the entire gang, abandoning everything, rush from the cabin barely in time to escape capture. The police make a hurried search and again start in pursuit. The robbers are so hard pressed that they are unable to reach their ponies, and are obliged to take chances on foot. The police now get in sight of the fleeing robbers and a lively chase follows through tall weeds, over a bridge and up a steep hill. Reaching a pond the police are close on their heels. The foremost robbers jump in clothes and all and strike out for the opposite bank. Two hesitate and are captured. Boats are secured and after an exciting tussle the entire gang is rounded up. In the mix up one of the police is dragged overboard. The final scene shows the entire gang of bedraggled and crestfallen robbers tied together with a rope and being led away by the police. Two of the police are loaded down with revolvers, knives and cartridge belts, and resemble walking aresenals. As a fitting climax a confederate steals out of the woods, cuts the rope and gallantly rescues the "Bandit Queen." |
+| A Reckless Romeo | A philandering husband's public flirtation with a beautiful girl—and the resulting brawl with the woman's boyfriend—are captured by a newsreel cameraman. When the husband takes his wife and her mother out to the movies, the footage is shown on-screen. The husband tries to flee the theater, only to be spotted and leaped upon by the woman's boyfriend, treating viewers to two simultaneous fights between the same two men, both on-screen and in the aisle. |
+| Love, Loot and Crash | Dora and her father are lost in the kitchen (they have just fired their cook). An ad for new one in the newspaper attracts two crooks (one of which is Fritz Schade). He dresses like a woman to apply for the job. At his first opportunity he plans to loot the house, but just then, a cop on the beat stops in for coffee. Fritz locks the cop in the basement, picks up what things of value he can and escapes. He and his pal drive off in a Model T. Along the way Dora is kidnapped, the Keystone Cops give chase and all ends well in the end. |
+| A Film Johnnie | Charlie goes to the movies and falls in love with a girl on the screen. He goes to Keystone Studios to find her. He disrupts the shooting of a film, and a fire breaks out. Charlie is blamed, gets squirted with a firehose, and is shoved by the female star. The title of the film is a variation on the term "stage door johnnie". It was once commonly used to describe someone who regularly loitered near the actors' entrances of theaters hoping to meet the players or perhaps land a job onstage or backstage. |
+| Caught in the Rain | The action starts in a park, where a man is trying to romance a matronly woman, wearing a fur stole. The man leaves to go to a concession stall, St Rucopias, and Charlie comes along in his infamous tramp costume. He makes the woman laugh by almost soaking himself at the drinking fountain. He then sits next to her on the bench. The original man returns and is angry. He grabs Charlie by the face. He argues with the woman, waving his arms around and hitting Charlie with each movement. His last swing knocks Charlie clean over the bench. They leave and return to a hotel. Charlie is despondent. He leaves the park and staggers, now apparently drunk, over a wide road, almost getting hit by a car. He arrives at the same hotel and after propositioning a girl outside, enters, falling over a man's gout-bound leg at the reception desk. He checks the register to see which room the couple are in, who are meanwhile getting drunk themselves. Rushing up the stairs he slips, and slides comically back to the foot on his stomach. He makes several more dangerously balanced comical attempts, hitting the gout-bound man and his two female friends in the process. He approaches the hotel room, where the original couple are arguing. His key doesn't fit but the door is open and he enters, at first not seeing the couple due to his drunken state. The man boots him out. Charlie tries another room with his key and gets in. He starts to undress and goes to bed. Meanwhile the man across the hall leaves his wife to go out. We are told she is a sleepwalker. She crosses the hall to sit on Charlie's bed. However the rain starts and the husband returns to the hotel to find his room empty. Charlie, now awake meets him at his door and claims not to know where his wife is. While the man goes down to reception, Charlie takes her back to her room but gets trapped when the man returns. He ends up on the balcony in the rain. But then a policeman spots him and challenges him, drawing a gun. Enter the Keystone Cops. A comic battle ensues in the hallway. The husband ends up in Charlie's room and collapses drunk on the bed. The cops disappear. The wife comes into the hall and she and Charlie fall down drunk on the floor. |
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+And I will also get this display:
 
----
+### **The Little Train Robbery**
 
-## Evaluation Criteria
+The opening scene shows the interior of the robbers' den. The walls are decorated with the portraits of notorious criminals and pictures illustrating the exploits of famous bandits. Some of the gang are lounging about, while others are reading novels and illustrated papers. Although of youthful appearance, each is dressed like a typical Western desperado. The "Bandit Queen," leading a blindfolded new recruit, now enters the room. He is led to the center of the room, raises his right hand and is solemnly sworn in. When the bandage is removed from his eyes he finds himself looking into the muzzles of a dozen or more 45's. The gang then congratulates the new member and heartily shake his hand. The "Bandit Queen" who is evidently the leader of the gang, now calls for volunteers to hold up a train. All respond, but she picks out seven for the job who immediately leave the cabin. The next scene shows the gang breaking into a barn. They steal ponies and ride away. Upon reaching the place agreed upon they picket their ponies and leaving them in charge of a trusted member proceed to a wild mountain spot in a bend of the railroad, where the road runs over a steep embankment. The spot is an ideal one for holding up a train. Cross ties are now placed on the railroad track and the gang hide in some bushes close by and wait for the train. The train soon approaches and is brought to a stop. The engineer leaves his engine and proceeds to remove the obstruction on the track. While he is bending over one of the gang sneaks up behind them and hits him on the head with an axe, and knocks him senseless down the embankment, while the gang surround the train and hold up the passengers. After securing all the "valuables," consisting principally of candy and dolls, the robbers uncouple the engine and one car and make their escape just in time to avoid a posse of police who appear on the scene. Further up the road they abandon the engine and car, take to the woods and soon reach their ponies. In the meantime the police have learned the particulars of the hold-up from the frightened passengers and have started up the railroad tracks after the fleeing robbers. The robbers are next seen riding up the bed of a shallow stream and finally reach their den, where the remainder of the gang have been waiting for them. Believing they have successfully eluded their pursuers, they proceed to divide the "plunder." The police, however, have struck the right trail and are in close pursuit. While the "plunder" is being divided a sentry gives the alarm and the entire gang, abandoning everything, rush from the cabin barely in time to escape capture. The police make a hurried search and again start in pursuit. The robbers are so hard pressed that they are unable to reach their ponies, and are obliged to take chances on foot. The police now get in sight of the fleeing robbers and a lively chase follows through tall weeds, over a bridge and up a steep hill. Reaching a pond the police are close on their heels. The foremost robbers jump in clothes and all and strike out for the opposite bank. Two hesitate and are captured. Boats are secured and after an exciting tussle the entire gang is rounded up. In the mix up one of the police is dragged overboard. The final scene shows the entire gang of bedraggled and crestfallen robbers tied together with a rope and being led away by the police. Two of the police are loaded down with revolvers, knives and cartridge belts, and resemble walking aresenals. As a fitting climax a confederate steals out of the woods, cuts the rope and gallantly rescues the "Bandit Queen."
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+### **A Reckless Romeo**
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+A philandering husband's public flirtation with a beautiful girl—and the resulting brawl with the woman's boyfriend—are captured by a newsreel cameraman. When the husband takes his wife and her mother out to the movies, the footage is shown on-screen. The husband tries to flee the theater, only to be spotted and leaped upon by the woman's boyfriend, treating viewers to two simultaneous fights between the same two men, both on-screen and in the aisle.
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+### **Love, Loot and Crash**
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
+Dora and her father are lost in the kitchen (they have just fired their cook). An ad for new one in the newspaper attracts two crooks (one of which is Fritz Schade). He dresses like a woman to apply for the job. At his first opportunity he plans to loot the house, but just then, a cop on the beat stops in for coffee. Fritz locks the cop in the basement, picks up what things of value he can and escapes. He and his pal drive off in a Model T. Along the way Dora is kidnapped, the Keystone Cops give chase and all ends well in the end.
 
-**We look forward to seeing your solution!** Good luck!
+### **A Film Johnnie**
+
+Charlie goes to the movies and falls in love with a girl on the screen. He goes to Keystone Studios to find her. He disrupts the shooting of a film, and a fire breaks out. Charlie is blamed, gets squirted with a firehose, and is shoved by the female star. The title of the film is a variation on the term "stage door johnnie". It was once commonly used to describe someone who regularly loitered near the actors' entrances of theaters hoping to meet the players or perhaps land a job onstage or backstage.
+
+### **Caught in the Rain**
+
+The action starts in a park, where a man is trying to romance a matronly woman, wearing a fur stole. The man leaves to go to a concession stall, St Rucopias, and Charlie comes along in his infamous tramp costume. He makes the woman laugh by almost soaking himself at the drinking fountain. He then sits next to her on the bench. The original man returns and is angry. He grabs Charlie by the face. He argues with the woman, waving his arms around and hitting Charlie with each movement. His last swing knocks Charlie clean over the bench. They leave and return to a hotel. Charlie is despondent. He leaves the park and staggers, now apparently drunk, over a wide road, almost getting hit by a car. He arrives at the same hotel and after propositioning a girl outside, enters, falling over a man's gout-bound leg at the reception desk. He checks the register to see which room the couple are in, who are meanwhile getting drunk themselves. Rushing up the stairs he slips, and slides comically back to the foot on his stomach. He makes several more dangerously balanced comical attempts, hitting the gout-bound man and his two female friends in the process. He approaches the hotel room, where the original couple are arguing. His key doesn't fit but the door is open and he enters, at first not seeing the couple due to his drunken state. The man boots him out. Charlie tries another room with his key and gets in. He starts to undress and goes to bed. Meanwhile the man across the hall leaves his wife to go out. We are told she is a sleepwalker. She crosses the hall to sit on Charlie's bed. However the rain starts and the husband returns to the hotel to find his room empty. Charlie, now awake meets him at his door and claims not to know where his wife is. While the man goes down to reception, Charlie takes her back to her room but gets trapped when the man returns. He ends up on the balcony in the rain. But then a policeman spots him and challenges him, drawing a gun. Enter the Keystone Cops. A comic battle ensues in the hallway. The husband ends up in Charlie's room and collapses drunk on the bed. The cops disappear. The wife comes into the hall and she and Charlie fall down drunk on the floor.
+
+## Demo
+
+[Watch the demo video here!](https://drive.google.com/file/d/1W_ND94VhSL4QoJguMzN9v4u9UqfxAibt/view?usp=sharing)
+
+## Salary
+
+My expected salary is $3,000 per month.
