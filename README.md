@@ -1,91 +1,119 @@
 # AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
-
 ---
 
 ## Overview
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+This project implements a **content-based recommendation system** that suggests movies similar to a user's input description. It uses **TF-IDF vectorization** and **cosine similarity** to compare user input with movie descriptions and returns the most relevant matches.
 
-### Example Use Case
+## Dataset
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+- **Source**: The dataset used is **Top 1000 IMDb Movies**. It is available publicly on kaggle - https://www.kaggle.com/datasets/inductiveanks/top-1000-imdb-movies-dataset
+- **Loading Instructions**: The dataset (`Top_1000_IMDb_movies_New_version.csv`) should be placed in the project directory.
+- **Columns Used**:
+  - `Movie Name`: The title of the movie.
+  - `Description`: A brief summary of the movie plot.
+
+## Code Structure
+
+The recommendation system follows a structured pipeline:
+
+Load Data: The dataset is read into a pandas DataFrame, and only relevant columns (Movie Name and Description) are kept.
+
+Transform Data: The text descriptions are vectorized using TF-IDF (Term Frequency-Inverse Document Frequency), which converts them into numerical representations.
+
+Recommend: Using cosine similarity, the system calculates the similarity between the user’s input and the movie descriptions, retrieving the top N most similar movies based on their similarity scores.
+
+## Setup
+
+### Prerequisites
+
+Ensure you have **Python 3.7+** installed on your system. It is recommended to set up a virtual environment.
+
+### Install Dependencies
+
+1. Create a virtual environment (optional):
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On Windows use: venv\Scripts\activate
+   ```
+2. Install required packages:
+   you can install manually:
+   ```sh
+   pip install pandas numpy scikit-learn nltk
+   ```
+
+## Running the Code
+
+You can run the script via command line or Jupyter/Google Collab Notebook.
+
+### Command Line Execution
+
+Run the following command, replacing `"Some user description"` with a movie description of your choice. Below is an example:
+
+```sh
+python recommend.py "I love thrilling action movies set in space, with a comedic twist."
+```
+
+### Jupyter Notebook Execution
+
+1. Open Jupyter Notebook:
+   ```sh
+   jupyter notebook
+   ```
+2. Run the notebook containing the recommendation system code.
+
+## Results
+
+Example Output for the query:
+
+
+I love thrilling action movies set in space, with a comedic twist.
+
+
+### Expected Output:
+
+
+Recommended Movies:
+
+Rank: 1  
+Movie: Amarcord   
+Similarity Score: 0.2256   
+Description: A series of comedic and nostalgic vignettes set in a 1930s Italian coastal town.  
+
+Rank: 2   
+Movie: The Man Who Would Be King   
+Similarity Score: 0.1249   
+Description: Two former British soldiers in 1880s India decide to set themselves up as Kings in Kafiristan, a land where no white man has set foot since Alexander the Great.
+
+Rank: 3   
+Movie: Gravity   
+Similarity Score: 0.1190   
+Description: Two astronauts work together to survive after an accident leaves them stranded in space.
+
+Rank: 4   
+Movie: The Incredibles   
+Similarity Score: 0.1113   
+Description: While trying to lead a quiet suburban life, a family of undercover superheroes are forced into action to save the world.
+
+Rank: 5   
+Movie: Barton Fink   
+Similarity Score: 0.1089   
+Description: A renowned New York playwright is enticed to California to write for the movies and discovers the hellish truth of Hollywood.
+
+The system ranks the movies based on similarity scores and provides detailed descriptions.
 
 ---
 
-## Requirements
+Salary expectation per month (Mandatory)   
+$1600-2000/month
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+Thank you for reviewing my submission! I look forward to the opportunity to work with you and contribute my skills to your team. I appreciate your time and consideration.
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+Best,
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+Balpreet Kaur  
+Master’s in Computer Science  
+University of Massachusetts Amherst  
+Email: bbalpreetkau@umass.edu
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
-
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
-
----
-
-## Deliverables
-
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
-
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
-
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
-
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
