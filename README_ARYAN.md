@@ -47,5 +47,5 @@ Genre filtering is not included since the dataset lacks genre information.
 A more advanced approach would use word embeddings (e.g., Word2Vec, BERT) to capture deeper meanings.
 
 
-## ** Salary Expectation**
+## **Salary Expectation**
 My expected salary for this role is **$3000 per month** (negotiable).
