@@ -24,7 +24,7 @@ However, this is not needed as I have already performed the process and saved th
 ### Installation
 1. Clone this repository:
    ```bash
-   git clone <repository-url>
+   git clone "https://github.com/shruthic06/lumaa-spring-2025-ai-ml"
    cd <project-directory>
    ```
 2. Create a virtual environment (Recommended):
