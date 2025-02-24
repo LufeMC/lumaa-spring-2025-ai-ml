@@ -25,11 +25,11 @@ However, this is not needed as I have already performed the process and saved th
 1. Clone this repository:
    ```bash
    git clone "https://github.com/shruthic06/lumaa-spring-2025-ai-ml"
-   cd <project-directory>
+   cd lumaa-spring-2025-ai-ml
    ```
 2. Create a virtual environment (Recommended):
    ```bash
-   python -m venv venv
+   python -m venv <path-to-lumaa-spring-2025-ai-ml>
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 3. Install dependencies: 
