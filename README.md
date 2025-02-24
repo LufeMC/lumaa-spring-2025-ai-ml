@@ -1,91 +1,29 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+Overview: 
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+This file contains information needed to run the submission for the Lumaa AI - AI/Machine Learning Intern Challenge. In this challenge, I have
+made a simple content-based recommendation system that takes a short description of the user's preferences, and recommmends movies to the user.
 
----
 
-## Overview
+1. The dataset comes from a public github repositorty training NLP techiniques on the plot summaries by Nazareno. If you run the code on github
+   using Jupyter notebook, you should be able to run it with the csv file included in this repository. If you run it on Google Colab, you can simply
+   add the dataset to files section in Google Colab or use files.upload to access it on your local computer or even get it from your google drive
+   using drive.mount().
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
 
-### Example Use Case
+2. If you run this on google colab, the default python 3.10 works and all the necessary packages and libraries required to import is also provided
+   at the top of the file. If you run this on Jupyter Notebook, you should have no issue simply running the latest python version in the kernel. If
+   you use an older or different python version, you may have to change what you download from nltk, but Jupyter Notebook or Google Colab will tell
+   what different library version you need from nltk. 
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
 
----
+3. With the uploaded ipynb file added to this repository, you can run the code in Jupyter notebook. I created the code on Google Colab,
+   but with the ipynb gile, it should work fine on either platform. You can see the demo in the repository on how the code would run in
+   Google Colab.
 
-## Requirements
+4. A sample query that I ran had a user input of "I like drama films with romance in them." with a defined term of n = 3 for the top 3
+recommendations. The result or output of this sample query was
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
-
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
-
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
-
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
-
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
-
----
-
-## Deliverables
-
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
-
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
-
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
-
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+              title
+     1.Network
+     2.Singin' in the Rain
+     3.The Grapes of Wrath
