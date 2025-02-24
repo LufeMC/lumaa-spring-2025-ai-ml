@@ -1,91 +1,66 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Video Game Recommendation System
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+This project is a **content-based recommendation system** for video games. Given a video game as input, the system recommends similar games based on features such as platform, genre, critic scores, user scores, global sales, and rating.
 
----
+## Features
 
-## Overview
+- **Input**: A video game title (e.g., "Grand Theft Auto V").
+- **Output**: A list of similar video games ranked by similarity score.
+- **Similarity Calculation**: Uses **cosine similarity** to measure similarity between games based on their features.
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+## Dataset
 
-### Example Use Case
+The dataset used for calculation includes the following columns:
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+- `Name`: Name of the game.
+- `Platform`: Gaming platform (e.g., PC, Xbox, PlayStation).
+- `Genre`: Genre of the game (e.g., Action, RPG, Shooter).
+- `Critic_Score`: Average critic review score.
+- `User_Score`: Average user review score.
+- `Global_Sales`: Total global sales (in millions).
+- `Rating`: ESRB rating (e.g., T, E, M).
 
----
+## How It Works
 
-## Requirements
+1. **Data Preprocessing**:
+   - Categorical features (`Platform`, `Genre`, `Rating`) are **one-hot encoded**.
+   - Numerical features (`Critic_Score`, `User_Score`, `Global_Sales`) are **normalized**.
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+2. **Cosine Similarity**:
+   - A similarity matrix is calculated using cosine similarity on the preprocessed feature matrix.
+   - The system retrieves the most similar games based on the similarity scores.
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+3. **Recommendations**:
+   - Given an input game name, the system outputs the top `N` most similar games.
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+## Installation
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+1. Clone the repository:
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+    ```bash
+    git clone https://github.com/KhuongBao/lumaa-spring-2025-ai-ml.git
+    cd video-game-recommendation
+    ```
 
----
+2. Install the required Python libraries:
 
-## Deliverables
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+## Usage
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+### Running the Jupyter Notebook
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+1. Open **main.ipynb** in Jupyter Notebook or any IDE
+2. Run all cells to train and use the recommendation system.
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+### Example
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+Input:
 
----
+```bash
+Enter a game name: Grand Theft Auto V
+```
 
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+### Video Demo: [LINK](https://youtu.be/7MPFRs_u1pM)
