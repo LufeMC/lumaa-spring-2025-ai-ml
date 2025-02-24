@@ -29,12 +29,12 @@ However, this is not needed as I have already performed the process and saved th
    ```
 2. Create a virtual environment (Recommended):
    ```bash
-   python -m venv <path-to-lumaa-spring-2025-ai-ml>
+   python3 -m venv <path-to-lumaa-spring-2025-ai-ml>
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 3. Install dependencies: 
    ```bash
-   pip install -r requirements.txt
+   pip3 install -r requirements.txt
    ```
 
 ## Running the Code
