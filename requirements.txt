@@ -1,4 +1,3 @@
-ast
 pandas
 numpy
 nltk
