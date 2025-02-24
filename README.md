@@ -4,88 +4,64 @@
 
 ---
 
-## Overview
+## Pre-requisites
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+Python, version 3.12.2 or higher (which was the version this notebook was tested on.)\
+pip, version 25.0.1 or higher
 
-### Example Use Case
+## Setup
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+First, clone this project to a local directory and navigate into it. You can use the command below, or use instructions to do so with the green Code button provided by GitHub.
 
----
+```
+git clone https://github.com/samihsq/lumaa-spring-2025-ai-ml.git movie_query
+cd movie_query
+```
 
-## Requirements
+Then, make a virtual environment for this project. Ensure you have virtualenv with the following command:
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+```
+pip install virtualenv
+```
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+To create and enter the virtualenv, run
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+```
+virtualenv venv
+source venv/bin/activate
+```
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+Finally, to install the required packages, run
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+```
+pip install -r requirements.txt
+```
 
----
+Perfect! You're ready to get prompting!
 
-## Deliverables
+## Running The Code
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+Now, in your terminal, in the directory with the project files, run `jupyter notebook`. This will open a new window in your browser where you can look through the code behind the prompting! To navigate to the file, double click on the item called _solution.ipynb_.
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+From here, run all of the cells to download the movie dataset, fit to the data, and run a test comparison to a default query.
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+To change the query, simply edit the _input_description_ string in the second to last cell, then rerun the last two cells.
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+# Results
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+For the default query _"I love thrilling action movies set in space, with a comedic twist."_, this function returns:
 
----
+```
+Indices of closest movies (from closest to furthest): [461, 127, 66, 83, 67]
+Distances: [0.8907968302074052, 0.8968179265380128, 0.8970058935830795, 0.9006916739419529, 0.903934328142089]
 
-## Evaluation Criteria
+Names of closest movies: ['Lost in Space', 'Mad Max: Fury Road', 'Up', 'The Lovers', 'Monsters vs Aliens']
+```
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+After this, the rows from the original dataset corresponding to this movie is also displayed, if a user would like more information about the most similar movies to their prompt!
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+# Dataset
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+The dataset of movies and their descriptions was found at <https://www.kaggle.com/datasets/harshshinde8/movies-csv?select=movies.csv>.
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+The loading of this dataset is handled by the first two cells of the notebook.
