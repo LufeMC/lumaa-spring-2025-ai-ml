@@ -4,88 +4,59 @@
 
 ---
 
-## Overview
+# 🎬 Content-Based Movie Recommendation System  
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+## 📌 Overview  
+This project implements a **content-based recommendation system** that suggests movies based on a user's short text description of their preferences. The system uses **TF-IDF vectorization** and **cosine similarity** to compare the user's query with movie overviews and return the most relevant recommendations.  
 
-### Example Use Case
+## 📊 Dataset  
+- The dataset consists of movies with their **overviews (descriptions)**.  
+- **Source**: A small **public dataset** (100–500 movies) that includes movie titles and plot summaries.  
+- The dataset is included in this repository as **`[movies_metadata.csv](Data link='https://drive.google.com/file/d/1IAifkLYGrkllrK9c7WHDl9gaAo-3eY6x/view?usp=drive_link')`** . connect to drive in colab and copy the file path and replace it with your own in the code file.
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+## ⚙️ Approach  
+1. **Preprocessing:** Clean and normalize the text (lowercasing, removing special characters, stopwords, and lemmatization).  
+2. **TF-IDF Vectorization:** Convert movie overviews and user query into TF-IDF vectors.  
+3. **Cosine Similarity:** Measure the similarity between the user query and all movie descriptions.  
+4. **Recommendation:** Return the **top 3–5 most similar** movies.  
 
----
+## 🛠️ Setup Instructions  
 
-## Requirements
+### **1️⃣ Install Dependencies**  
+Since this project is implemented in a **Jupyter Notebook (`.ipynb`)**, install the required libraries directly using the following command in a new cell:  
+```python
+!pip install pandas numpy scikit-learn nltk
+```
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+### **2️⃣ Run the Notebook**  
+- Open **Jupyter Notebook**.  
+- Load and run all cells sequentially.  
+- Enter a movie preference query when prompted.  
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+### **3️⃣ Example Query & Output**  
+#### **User Input:**  
+```plaintext
+"I love thrilling action movies set in space, with a comedic twist."
+```
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+#### **Expected Output:**  
+```
+Top 5 Recommended Movies:
+1. Guardians of the Galaxy (Similarity: 0.82)
+2. Star Wars: A New Hope (Similarity: 0.76)
+3. Thor: Ragnarok (Similarity: 0.72)
+4. The Fifth Element (Similarity: 0.68)
+5. Serenity (Similarity: 0.65)
+```
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+[📽️ Short Video Demo](https://www.awesomescreenshot.com/video/36753966?key=212b0d94b1fec99f2cc056b6c0e1e74b) 
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+## 💰 Salary Expectation per Month  
+20-30$/hr for the internship  
 
----
-
-## Deliverables
-
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
-
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
-
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
-
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+## 📝 Deliverables  
+✅ **Forked GitHub Repository** with the full implementation.  
+✅ **Jupyter Notebook (`.ipynb`)** for implementation.  
+✅ **README.md** (this file).  
+✅ **Short Video Demo** demonstrating how the system runs.  
+✅ **Implementation of the recommendation system** using TF-IDF + cosine similarity.  
