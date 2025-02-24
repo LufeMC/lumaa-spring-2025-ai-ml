@@ -1,91 +1,160 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Simple Content-Based Recommendation
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+## Summary
 
----
+This project is a content-based movie recommendation system that uses BERT embeddings and cosine similarity to suggest movies based on user input. Users can specify genres, descriptions, ratings, and release years to refine their recommendations.
 
-## Overview
+## Dataset
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+The dataset contains 100-500 movie records, including:
 
-### Example Use Case
+- **title** (Movie name)
+- **description** (Plot summary)
+- **genre** (List of genres)
+- **rating** (IMDb rating)
+- **year** (Release year)
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+**Source:** IMDb dataset -> https://www.kaggle.com/datasets/shreyasur965/imdb-top-100-movies-dataset?select=top_100_movies.csv
 
----
+The dataset should be stored as a CSV file (e.g., `movies.csv` or whatever name is simple).
 
-## Requirements
+However would be easier to just clone repository. 😁
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+## Setup
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+### Requirements
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+- Python 3.11+ (Recommended)
+- Virtual Environment (Optional but Recommended!)
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+### Installation Steps
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+Clone the repository:
 
----
+```bash
+git clone https://github.com/<yourusername>/gg-lumaa-spring-2025-ai-ml.git
+```
 
-## Deliverables
+Should look like this afterwards in your terminal:
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+```bash
+(base) gregorygrullon@MacBookAir gg-lumaa-spring-2025-ai-ml %  
+```
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+Create and activate a virtual environment:
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+Make sure terminal looks like this before installing dependencies (if using Virtual Enviornment):
+```bash
+(venv) (base) gregorygrullon@MacBookAir gg-lumaa-spring-2025-ai-ml %  
+```
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+Install dependencies:
 
----
+```bash
+pip install -r requirements.txt
+```
 
-## Evaluation Criteria
+## Running the Code
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+### Running the Script
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+To get movie recommendations based on user input:
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+```bash
+python recommend.py "I like action movies after 2000 with a rating above 8.5"
+```
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
+### Running in a Jupyter Notebook
 
-**We look forward to seeing your solution!** Good luck!
+Open Jupyter Notebook:
+
+```bash
+jupyter notebook
+```
+
+Open `ContentRecommendation.ipynb` and run the notebook cells.
+
+## Results
+
+### Example Query:
+
+**User Input:**
+
+```text
+"Enter the number of recommendations you want: " (type 1,2,3,4,5, etc...)
+"I like action movies after year 2000 with a rating above 8.5"
+```
+
+**Output:**
+
+Top 5 Recommended Movies:
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>genre</th>
+      <th>rating</th>
+      <th>year</th>
+      <th>similarity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>17</th>
+      <td>Spider-Man: Across the Spider-Verse</td>
+      <td>['Animation', 'Action', 'Adventure']</td>
+      <td>8.7</td>
+      <td>2023</td>
+      <td>0.312188</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>The Lord of the Rings: The Return of the King</td>
+      <td>['Action', 'Adventure', 'Drama']</td>
+      <td>9.0</td>
+      <td>2003</td>
+      <td>0.278019</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>The Lord of the Rings: The Fellowship of the Ring</td>
+      <td>['Action', 'Adventure', 'Drama']</td>
+      <td>8.8</td>
+      <td>2001</td>
+      <td>0.267552</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Dark Knight</td>
+      <td>['Action', 'Crime', 'Drama']</td>
+      <td>9.0</td>
+      <td>2008</td>
+      <td>0.247245</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>The Lord of the Rings: The Two Towers</td>
+      <td>['Action', 'Adventure', 'Drama']</td>
+      <td>8.8</td>
+      <td>2002</td>
+      <td>0.246011</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+## Salary Expectation
+
+### [$2000 - $2400] monthly
+
+## Contributing
+
+Feel free to fork this repository and submit pull requests with improvements or additional features! 🤝
