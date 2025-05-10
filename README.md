@@ -1,91 +1,124 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
-
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
-
----
+# Movie Recommendation System
 
 ## Overview
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+This project implements a movie recommendation system using various NLP techniques to match user preferences with movie descriptions. TF-IDF, lemmatized TF-IDF, SVD-reduced TF-IDF, and SBERT embeddings to provide content recommendations based on user inputs.
 
-### Example Use Case
+## Folder Structure
+```
+movie-recommendation-system/
+├── cleaned/                  # Preprocessed data files (ignored in git)
+│   └── filtered_df.pkl      # Filtered dataset
+├── data/                    # Raw data 
+│   └── tmdb_5000_movies.csv
+├── models/                  # Model implementations
+│   ├── sbert.py            # Sentence-BERT model
+│   ├── tfidf.py            # Basic TF-IDF model
+│   ├── tfidf_lemmatized.py # Lemmatized TF-IDF
+│   └── tfidf_svd.py        # TF-IDF with SVD
+├── outputs/                 # Recommendation outputs (ignored in git)
+├── client.py               # CLI interface
+├── preprocessing.py        # Data preprocessing scripts
+├── README.md        # this file
+├── demo.md        # link to video demo
+└── requirements.txt        # Project dependencies
+```
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+## Dataset
+We used a publically available dataset from Kaggle called the [TMDb 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv). This is a list of around 5k popular movies with plot overviews and other related data collected around 7 years ago. The database was generated using the [TMDb](https://www.themoviedb.org/) API.
 
----
+## Setup
+### Clone and navigate to root
+```{bash}
+git clone https://github.com/lous-e/movie-recommendation-system
+cd movie-recommendation-system
+```
+### Install dependencies
+Create a new virtual environment using any tool you prefer. We use venv for this example
 
-## Requirements
+#### Windows
+```{bash}
+python -m venv venv
+venv/Scripts/activate
+```
+#### MacOS
+```{bash}
+python3 -m venv venv
+source ./venv/bin/activate
+```
+### Install dependencies
+```{bash}
+pip install -r requirements.txt
+python load_models.py
+```
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+## Usage
+### CLI Tool
+```{bash}
+python client.py --desc "I like action movies set in space" --topn 5 --model tfidf --out recommendations
+```
+### Arguments
+| Argument        | Description           | Type  | Default
+| ------------- |:-------------| :-----:| -----:
+| --desc      | User input describing preference | str | Required
+| --topn      | Number of top recommendations to return      |   int | 5 (Max 10)
+| --model | Model type for recommendations      |   str | tfidf
+| --out | Output file name (saved in outputs/)      |    str | output
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+Currently, the following models are supported:
+- ```tfidf```: Returns the top-n movies sorted by descending order of [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
+- ```tfidf-lemmatized```: [Lemmatizes](https://en.wikipedia.org/wiki/Lemmatization) the words before tf-idf.
+- ```tfidf-svd```: Performs [SVD](https://en.wikipedia.org/wiki/Singular_value_decomposition) on tfidf matrices to reduce dimensionality.
+- ```sbert```: Uses SBERT embeddings for semantic similarity matching
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+### Outputs
+The recommendations are saved in outputs/{out}.txt with details including movie title, similarity score, and overview.
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+## Results
+Top-5 movie recommendations for sample query
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+```
+I like space adventure films
+```
 
----
+- tfidf
+    1. The Kentucky Fried Movie (Similarity: 0.4654)
+    2. Space Pirate Captain Harlock (Similarity: 0.2361)
+    3. A Haunted House (Similarity: 0.2192)
+    4. Metallica: Through the Never (Similarity: 0.1830)
+    5. Lifeforce (Similarity: 0.1696)
 
-## Deliverables
+- tfidf-lemmatized
+    1. The Kentucky Fried Movie (Similarity: 0.4654)
+    2. Space Pirate Captain Harlock (Similarity: 0.2361)
+    3. A Haunted House (Similarity: 0.2192)
+    4. Metallica: Through the Never (Similarity: 0.1830)
+    5. Lifeforce (Similarity: 0.1696)
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+- tfidf-svd
+    1. Lost in Space (Similarity: 0.4337)
+    2. Space Pirate Captain Harlock (Similarity: 0.4144)
+    3. Moonraker (Similarity: 0.3778)
+    4. Deck the Halls (Similarity: 0.3716)
+    5. The Kentucky Fried Movie (Similarity: 0.3600)
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+- sbert
+    1. Interstellar (Similarity: 0.4547)
+    2. You Only Live Twice (Similarity: 0.4534)
+    3. Sea Rex 3D: Journey to a Prehistoric World (Similarity: 0.4388)
+    4. My Big Fat Independent Movie (Similarity: 0.4096)
+    5. Galaxy Quest (Similarity: 0.4080)
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+## Future Work
+- Model Improvements
+    - Add collaborative filtering based on user ratings
+    - Incorporate more advanced transformer models
+- Real-time movie data updates
+- Deployment
+    - Dockerization
+    - Endpoints using FastAPI
+    - Streamlit frontend
+- Evaluation
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
-
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
-
----
-
-## Evaluation Criteria
-
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
-
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
-
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
-
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
-
-**We look forward to seeing your solution!** Good luck!
+## Expectations
+Commented in PR!
