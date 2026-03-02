@@ -137,7 +137,7 @@ While the current system offers good recommendations using **TF-IDF** and **SBER
 4. **Interactive User Interface**: Create a user-friendly web or mobile application to make the recommendation system accessible and interactive, providing a seamless movie discovery experience.
 
 ## Salary Expectation
-**$2500 per month** for **40 hours** of work per week.
+**$XXXXX per month** for **40 hours** of work per week.
 
 Enjoy your personalized movie recommendations! 🎬🍿
 ---
